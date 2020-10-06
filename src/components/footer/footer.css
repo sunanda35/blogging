@@ -1,3 +1,15 @@
 .footer{
-    background-color: aqua;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: wheat;
+    padding: 25px 10px;
+}
+.fdata{
+    margin-right: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.ficon{
+    margin-left: 10px;
 }

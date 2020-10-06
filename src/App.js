@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <Header/>
      
-      <h1>lodu sala</h1>
+      <h1>Fuck off buddy, it's body part</h1>
       <Footer/>
     </div>
   );
