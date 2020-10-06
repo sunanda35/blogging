@@ -2,14 +2,53 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 10000;
+    background-color: rgb(119, 171, 255);
+    color: whitesmoke;
+    box-shadow: 0px 5px 10px rgb(54, 79, 122);
+    margin-bottom: 10px;
 }
 .header_logo{
-    font-size: 45px;
+    font-size: 37px;
     object-fit: contain;
-
 }
 .header_right{
     display: flex;
-}.header_icons{
-    margin-left: 30px;
+    align-items: center;
+    justify-content: space-between;
+}
+.header_input{
+    display: flex;
+    width: 20rem;
+    align-items: center;
+    border: 1px solid whitesmoke;
+    margin-right: 20px;
+}
+#input > input{
+    display: none;
+    flex: 1;
+    border: none;
+    background-color: transparent;
+}
+.header_input_button{
+    width: 50px !important;
+    color: rgb(149, 149, 149);
+}
+.header_icon_container{
+    display: flex;
+    align-items: center;
+}
+.header_icons{
+    margin-right: 10px;
+}
+.header_write{
+    padding: 10px;
+    border: 1.5px solid whitesmoke;
+}
+.header_search{
+    margin-right: 15px;
+    height: 5px;
 }
