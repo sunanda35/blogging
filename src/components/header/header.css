@@ -1,4 +1,4 @@
-@import '../../colors/Colors.js';
+@import '../../production/Colors.css';
 .header{
     display: flex;
     align-items: center;
@@ -7,9 +7,9 @@
     position: sticky;
     top: 0;
     z-index: 10000;
-    background-color: Primary;
-    color: whitesmoke;
-    box-shadow: 0px 5px 10px rgb(54, 79, 122);
+    background-color: var(--header-bg-color);
+    color: var(--header-color);
+    box-shadow: 0px 5px 10px var(--header-shadow-color);
     margin-bottom: 10px;
 }
 .header_logo{

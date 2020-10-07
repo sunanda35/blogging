@@ -1,14 +1,13 @@
 import React from 'react'
 import './header.css'
-import SearchIcon from '@material-ui/icons/Search';
-import NotificationsOutlinedIcon from '@material-ui/icons/NotificationsOutlined';
-import Avatar from '@material-ui/core/Avatar'
+import SearchIcon from '@material-ui/icons/Search'
+import {title} from '../../production/Strings'
 
 function Header() {
     return (
         <div id="head" className='header'>
             <div className='header_left'>
-            <h1 className='header_logo'>Blogger</h1>
+            <h1 className='header_logo'>{title}</h1>
             </div>
 
             <div className='header_right'>
