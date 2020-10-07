@@ -11,22 +11,24 @@ function Footer() {
     return (
         <div className='footer'>
             <div className='footer_left'>
-                <h className='fdata'>Help</h>
-                <h className='fdata'>Status</h>
-                <h className='fdata'>Start Writing</h>
-                <h className='fdata'>Privacy</h>
-                <h className='fdata'>Terms</h>
-                <h className='fdata'>Cookies</h>
-                <h className='fdata'>Contact us</h>
-                <h className='fdata'>About</h>
+                <ul>
+                    <li>Help</li>
+                    <li>Status</li>
+                    <li>Writer</li>
+                    <li>Privacy</li>
+                    <li>Terms</li>
+                    <li>Cookies</li>
+                    <li>Contact us</li>
+                    <li>About</li>
+                </ul>
             </div>
             <div className='footer_right'>
-                <LinkedInIcon fontSize='large' className='ficon'/>
-                <FacebookIcon fontSize='large' className='ficon'/>
-                <TwitterIcon fontSize='large' className='ficon'/>
-                <RedditIcon fontSize='large' className='ficon'/>
-                <PinterestIcon fontSize='large' className='ficon'/>
-                <InstagramIcon fontSize='large' className='ficon'/>
+                <LinkedInIcon fontSize='medium' className='ficon'/>
+                <FacebookIcon fontSize='medium' className='ficon'/>
+                <TwitterIcon fontSize='medium' className='ficon'/>
+                <RedditIcon fontSize='medium' className='ficon'/>
+                <PinterestIcon fontSize='medium' className='ficon'/>
+                <InstagramIcon fontSize='medium' className='ficon'/>
             </div>
         </div>
     )

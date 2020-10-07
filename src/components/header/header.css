@@ -1,3 +1,4 @@
+@import '../../colors/Colors.js';
 .header{
     display: flex;
     align-items: center;
@@ -6,7 +7,7 @@
     position: sticky;
     top: 0;
     z-index: 10000;
-    background-color: rgb(119, 171, 255);
+    background-color: Primary;
     color: whitesmoke;
     box-shadow: 0px 5px 10px rgb(54, 79, 122);
     margin-bottom: 10px;
