@@ -16,7 +16,7 @@ function Header() {
                     <SearchIcon fontSize='large' className='header_search'/>
                 </div>
                 <div className='header_icon_container'>
-                    <h4 className='header_icons header_write'>Write here</h4>
+                    <h4 onClick={()=>alert('Clicked write here button')} className='header_icons header_write'>Write here</h4>
                 </div>
             </div>
         </div>

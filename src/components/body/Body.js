@@ -7,25 +7,24 @@ function Body() {
     const [posts, setPosts] = useState([]);
 
     useEffect(()=>{
-        db.collection('posts').onSnapshot(snapshot => {
+        db.collection('posts').orderBy("views", "desc").limit(6).onSnapshot(snapshot => {
             setPosts(snapshot.docs.map(doc => ({
                 // doc.data(),
                 userid: doc.id,
                 ...doc.data()
-
-                // userName =  doc.userName
-
-                // console.log(doc.data().description)
-            }
+                }
             )));
         });
     },[posts])
+    
+    
 
     return (
-        <div className='body'>
+        <div className='body'>  
+        
         {
-            posts.map((post) => (
-                <Post key={post.userid} userName={post.userName} userAvatar={post.userAvatar} imgUrl={post.imgUrl} title={post.title} description={post.description}  />
+            posts.map((post,index) => (
+                <Post className={"index"+index} key={post.userid} userName={post.userName} userAvatar={post.userAvatar} imgUrl={post.imgUrl} title={post.title} description={post.description}  />
             ))
         }
 

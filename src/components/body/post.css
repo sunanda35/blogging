@@ -1,17 +1,54 @@
 .post{
-    width: 160%;
-    height: 100%; 
-    max-height: 500px;
-    max-width: 300px;
-    min-width: 100px;
     box-sizing: inherit;
-    border: 1px solid whitesmoke;
-    margin: 15px;
+    border: 1px solid rgb(228, 228, 228);
+    border-radius: 8px;
+    margin: 0.5px;
+    margin-top: 10px;
+    cursor: pointer;
+    overflow: hidden;
+}
+.index0, .index1{
+    width: 49%;
+    min-width: 15%;
+    height: 500px;
+}
+.index2, .index3,.index4,.index5{
+    width: 24.5%;
+    height: 300px;
+}
+@media only screen and (max-width: 800px){
+    .index0, .index1{
+        width: 100%;
+    }
+    /* .img_hover{
+        height: 80%;
+    } */
+}
+@media only screen and (max-width: 1200px){
+    .index2, .index3,.index4,.index5{
+        width: 49%;
+    }
+}
+@media only screen and (max-width: 725px){
+    .index2, .index3,.index4,.index5{
+        width: 100%;
+    }
 }
 .post_img{
     width: 100%;
-    height: 150px;
+    height: 100%;
+    transition: transform 1s, filter 1.5s ease-in-out;
+}
+
+.img_hover{
+    width: 100%;
+    height: 45%;
+    overflow: hidden;
     object-fit: cover;
+    
+}
+.post_img:hover{
+    transform: scale(1.1);
 }
 .post_author{
     display: flex;
