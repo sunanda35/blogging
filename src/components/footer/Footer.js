@@ -1,11 +1,7 @@
 import React from 'react'
 import './footer.css'
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import FacebookIcon from '@material-ui/icons/Facebook';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import RedditIcon from '@material-ui/icons/Reddit';
-import PinterestIcon from '@material-ui/icons/Pinterest';
-import InstagramIcon from '@material-ui/icons/Instagram';
+import { LinkedIn, Facebook, Twitter, Reddit, Pinterest, Instagram } from '@material-ui/icons';
+
 
 function Footer() {
     return (
@@ -23,12 +19,14 @@ function Footer() {
                 </ul>
             </div>
             <div className='footer_right'>
-                <LinkedInIcon fontSize='medium' className='ficon'/>
-                <FacebookIcon fontSize='medium' className='ficon'/>
-                <TwitterIcon fontSize='medium' className='ficon'/>
-                <RedditIcon fontSize='medium' className='ficon'/>
-                <PinterestIcon fontSize='medium' className='ficon'/>
-                <InstagramIcon fontSize='medium' className='ficon'/>
+                <ul>
+                    <li><LinkedIn fontSize='medium' className='ficon'/></li>
+                    <li><Facebook fontSize='medium' className='ficon'/></li>
+                    <li><Twitter fontSize='medium' className='ficon'/></li>
+                    <li><Reddit fontSize='medium' className='ficon'/></li>
+                    <li><Pinterest fontSize='medium' className='ficon'/></li>
+                    <li><Instagram fontSize='medium' className='ficon'/></li>
+                </ul>    
             </div>
         </div>
     )
