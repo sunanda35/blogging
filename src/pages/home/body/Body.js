@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import Post from './Post'
+import Post from './posts/Post'
 import './body.css'
-import { db } from '../../production/firebase.js'
+import { db } from '../../../production/firebase.js'
 
 function Body() {
     const [posts, setPosts] = useState([]);

@@ -1,16 +1,18 @@
 import React from "react";
-import "./App.css";
-import Body from "./components/body/Body";
-import Footer from "./components/footer/Footer";
-import Header from "./components/header/Header";
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import BlogPage from "./pages/blog_page/BlogPage";
+import Home from "./pages/home/Home";
+import Error from './pages/error/Error'
 
 function App() {
   return (
-    <div className="App">
-      <Header/>
-     <Body/>
-      <Footer/>
-    </div>
+    <BrowserRouter>
+      <Switch>
+      <Route component={Home} path='/' exact/>
+      <Route component={BlogPage} path='/blog-lodu'/>
+      <Route component={Error} exact/>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
