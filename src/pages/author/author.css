@@ -1,0 +1,70 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.author{
+    margin-top: 20px;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+
+}
+.auth_img{
+    width: 8rem;
+    overflow: hidden;
+}
+.auth_img > img{
+width: 100%;
+}
+.auth_prof{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.auth_bio{
+    width: 75%;
+    margin: auto;
+    padding: 20px;
+    font-size: large;
+}
+.auth_prof_n> h1{
+    font-size: 3rem;
+}
+.auth_prof_n > h3{
+    color: rgb(194,202,214);
+}
+.s_icon{
+    margin: 5px;
+    padding: 3px;
+    cursor: pointer;
+}
+.twit{
+    color: rgb(29,161,242);
+}
+.linkdin{
+    color: rgb(1,119,181);
+}
+.git{
+    color: rgb(36,41,46);
+}
+.devider{
+    width: 60%;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    color: rgb(121,121,121);
+}
+.d_left, .d_right{
+    width: 48%;
+    border: 1px solid rgb(121,121,121);
+    margin-left: 2%;
+    background-color: rgb(121,121,121);
+    margin-right: 2%;
+}
+@media only screen and (max-width: 800px){
+    .author{
+        width: 100%;
+    }
+}

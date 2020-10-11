@@ -6,7 +6,7 @@ function Post({userName, userAvatar, imgUrl, title, description, className }) {
     return (
         <div className={'post '+className}>
             <div className='img_hover'>
-            <img className='post_img' src={imgUrl} ></img>
+            <img className='post_img' alt={title} src={imgUrl} ></img>
             </div>
             <div className='post_author'>
             <Avatar  className='post_author_avatar' alt={userName} src={userAvatar} />
