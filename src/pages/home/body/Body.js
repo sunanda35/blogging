@@ -3,13 +3,13 @@ import Post from './posts/Post'
 import './body.css'
 import { db } from '../../../production/firebase.js'
 
+
 function Body() {
     const [posts, setPosts] = useState([]);
 
     useEffect(()=>{
         db.collection('posts').orderBy("views", "desc").limit(6).onSnapshot(snapshot => {
             setPosts(snapshot.docs.map(doc => ({
-                // doc.data(),
                 userid: doc.id,
                 ...doc.data()
                 }
@@ -24,7 +24,7 @@ function Body() {
         
         {
             posts.map((post,index) => (
-                <Post className={"index"+index} key={post.userid} userName={post.userName} userAvatar={post.userAvatar} imgUrl={post.imgUrl} title={post.title} description={post.description}  />
+                <Post className={"index"+index} key={post.userid} userName={post.userName} imgUrl={post.imgUrl} title={post.title} description={post.description}  />
             ))
         }
 

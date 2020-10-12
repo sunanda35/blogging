@@ -1,0 +1,9 @@
+.post_p{
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    color: rgb(151, 151, 151);
+}
+.post_p > h3{
+    margin-left: 0.5rem;
+}

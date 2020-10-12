@@ -6,11 +6,11 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import {db} from '../../production/firebase'
-import Post from '../home/body/posts/Post';
+import Story from './story/Story'
 
 function Author() {
     const [profile, setProfile] = useState({})                      //for profile
-const [story, setStory] = useState([])                           //for story of him       
+    const [story, setStory] = useState([])                           //for story of him       
         useEffect(()=>{
             db.collection("author").where("userName", "==", "@somu").get().then(response=>{
                 response.docs.map(doc=>{
@@ -30,16 +30,19 @@ const [story, setStory] = useState([])                           //for story of 
             
         },[profile])
         useEffect(()=>{
-            db.collection('posts').orderBy("views", "desc").where("userName", "==", "profile.userName").onSnapshot(snapshot => {
-                setStory(snapshot.docs.map(doc => ({
-                    // doc.data(),
+            db.collection('posts').orderBy("views", "desc").where("userName", "==", "@somu").onSnapshot(snapshot => {
+                setStory(snapshot.docs.map(doc =>({
                     userid: doc.id,
                     ...doc.data()
-                    }
-                )));
+                })))
+                // snapshot.forEach(doc =>{
+                //     setStory(
+                //         // doc.data,
+                //         ...doc.data())
+                // }
+                // )
             });
         },[story])
-            console.log(story)
 
     return (
         <div>
@@ -68,12 +71,12 @@ const [story, setStory] = useState([])                           //for story of 
             </div>
             <div className='auth_story'></div>
             
-            <div>
-                {
-                    story.map((post, index)=>(
-                        <Post className={"index"+index} key={post.userid} userName={post.userName} userAvatar={post.userAvatar} imgUrl={post.imgUrl} title={post.title} description={post.description}  />
-                    ))
-                }
+            <div className='story'>
+            {
+                story.map((data) => (
+                    <Story key={data.userid} userName={data.userName} userAvatar={profile.img} imgUrl={data.imgUrl} title={data.title} description={data.description}  />
+                ))
+            }
             </div>
             <Footer/>
         </div>

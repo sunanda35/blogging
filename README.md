@@ -79,6 +79,9 @@
                 |- posts
                     |- post.js
                     |- post.css
+                    |- profile
+                        |- profile.js
+                        |- profile.css
 
         |- blog_page
             |- BlogPage.js
