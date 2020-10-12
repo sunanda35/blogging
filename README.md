@@ -84,7 +84,7 @@
                         |- profile.css
 
         |- blog_page
-            |- BlogPage.js
+            |- Blog.js
 
         |- error
             |- Error.js

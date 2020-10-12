@@ -1,0 +1,138 @@
+.blog{
+    width: 80%;
+    margin: auto;
+}
+.b_title{
+    font-size: 3rem;
+    font-weight: bold;
+    width: 100%;
+    text-align: start;
+    text-align: center;
+}
+.b_desc{
+    margin-top: 10px;
+    font-size: 1.6rem;
+    color: rgb(116,122,134);
+    text-align: center;
+}
+.b_img{
+    margin-top: 40px;
+    margin-bottom: 28px;
+    object-fit: contain;
+    width: 100%;
+}
+.b_body{
+    margin-top: 5px;
+}
+
+.b_body_story{
+    width: 70%;
+    margin: auto;
+}
+.story_action{
+    margin-top: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.b_body_imp{
+    width: 12rem;
+    display: flex;
+    justify-content: space-between;
+}
+.imp_ficon{
+    color: rgb(182, 97, 97);
+}
+.imp_ficon:hover{
+    color: red;
+}
+.imp_ticon{
+    color: gray;
+}
+.imp_ticon:hover{
+    color: rgb(51, 50, 50);
+}
+.imp_bicon{
+    color: rgb(77, 129, 228);
+}
+.imp_bicon:hover{
+    color: blue;
+}
+.ic{
+    display: flex;
+    align-items: center;
+}
+.b_body_share{
+    display: flex;
+    align-items: center;
+}
+.b_body_share > h4{
+    margin-right: 10px;
+}
+.s_ticon{
+    color:rgb(29,161,242);
+}
+.s_licon{
+    color: rgb(1,119,181);
+}
+.s_ficon{
+    color: rgb(0,143,247);
+}
+.s_micon{
+    color: rgb(190,58,44);
+}
+
+
+.b_author{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    padding: 10px;
+}
+.b_author_left{
+    display: flex;
+    align-items: center;
+}
+.b_a_l_r{
+    padding: 10px;
+}
+.b_author_right > h1{
+    padding: 10px;
+}
+@media screen and (max-width: 790px){
+    .blog{
+        width: 98%;
+        margin: auto;
+    }
+    .b_title{
+        font-size: 2rem;
+    }
+    .b_desc{
+        font-size: 1.3rem;
+    }
+    .b_body_story{
+        width: 90%;
+    }
+    .story_action{
+        margin-top: 26px;
+        display: contents;
+    }
+    .b_body_imp{
+        width: 12rem;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        justify-content: space-between;
+    }
+    .b_body_share{
+        width: 17rem;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+    }
+}
