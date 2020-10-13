@@ -13,7 +13,6 @@ function Post({userName, imgUrl, title, description, className }) {
             </div>
             <h2 className='post_title'>{title}</h2>
             <p className='post_description'>{description}</p>
-            
         </div>
     )
 }
