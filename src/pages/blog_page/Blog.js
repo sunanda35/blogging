@@ -10,6 +10,8 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
+import Tags from './body_tag/Tag'
+import { title } from '../../production/Strings'
 
 function Blog() {
     return (
@@ -23,6 +25,17 @@ function Blog() {
                 <div className='b_body'>
                     <div className='b_body_story'>
                         <Text/>
+                    </div>
+                    <div className='b_auth_tag'>
+                    <div className='tags'>
+                        <p>Tags: </p>
+                        <Tags tags='c'/>
+                        <Tags tags='tech'/>
+                        <Tags tags='business'/>
+                        <Tags tags='sex'/>
+                        <Tags tags='body'/>
+                        <Tags tags='anatomy'/>
+                    </div>
                     </div>
                     <div className='story_action'>
                     <div className='b_body_imp'>
@@ -45,20 +58,31 @@ function Blog() {
                     </div>
                     </div>
                 </div>
-
-                {/* <div className='b_author'>
+                <div className='b_author'>
                     <div className='b_author_left'>
-                        <Avatar src='https://miro.medium.com/max/2363/1*NG5eLKQ0HBJJRTztrxptXw.jpeg' alt='author'/>
+                        <div className='auth_img'>
+                        <img src='https://miro.medium.com/max/2363/1*NG5eLKQ0HBJJRTztrxptXw.jpeg' alt='name'/>
+                        </div>
                     <div className='b_a_l_r'>
-                        <p>sunanda</p>
-                        <p>Oct 5 . 6</p>
+                        <h6>@sunanda</h6>
+                        <p>Sunanda</p>
                     </div>
                     </div>
                     <div className='b_author_right'>
-                        <h1>social icon</h1>
+                    <div className='b_author_header'>
+                        <p></p>
+                    </div>
+                        <p>syo a si fhdkjfd fd fjdh fkjdh fkjdshfkjdh fjksd fjsdkjf kjd fkjsdfjsdfjdsjf dsfdshf</p>
                     </div>
 
-                </div> */}
+                </div>
+                <div className='b_related'>
+                    <div className='b_relate_left'></div>
+                    <div className='b_relate_middle'>
+                        <h2><strong>More from {title}</strong></h2>
+                    </div>
+                    <div className='b_relate_right'></div>
+                </div>
             </div>
             <Footer/>
         </div>

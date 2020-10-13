@@ -1,0 +1,10 @@
+.tagss{
+    margin: 5px;
+    width: fit-content;
+    padding-top: 1px;
+    padding-left: 3px;
+    padding-right: 3px;
+    border: 1px solid rgb(194,202,214);
+    border-radius: 2px;
+    background-color: rgb(194,202,214);
+}

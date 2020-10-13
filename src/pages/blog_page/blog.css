@@ -29,8 +29,23 @@
     width: 70%;
     margin: auto;
 }
+.b_auth_tag{
+    width: 70%;
+    margin: auto;
+}
+.tags{
+    padding: 10px;
+    width: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.tags > p{
+    margin-right: 5px;
+}
 .story_action{
     margin-top: 26px;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -84,22 +99,73 @@
 
 
 .b_author{
-    width: 100%;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    margin-top: 15px;
-    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border: 1px solid rgb(155, 155, 155);
+    border-radius: 6px;
 }
 .b_author_left{
-    display: flex;
+    width: 40%;
+    padding: 15px;
     align-items: center;
+}
+.auth_img{
+    height: 100px;
+    overflow: hidden;
+}
+.auth_img >img{
+    height: 100%;
+    object-fit: contain;
 }
 .b_a_l_r{
     padding: 10px;
+    margin: auto;
 }
-.b_author_right > h1{
-    padding: 10px;
+.b_a_l_r > h6{
+    font-size: large;
+    color: rgb(133, 133, 133);
 }
+.b_a_l_r >p{
+    font-size: x-large;
+    font-weight: bold;
+}
+.b_author_right{
+    padding: 15px;
+    width: 40%;
+    align-items: center;
+}
+.b_author_header>p{
+    font-size: x-large;
+    margin-bottom: 5px;
+}
+.b_author_right>p{
+    font-size: large;
+    font-weight: 20px;
+}
+.b_related{
+    width: 70%;
+    display: flex;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+}
+.b_relate_middle{
+    width: 300px;
+    text-align: center;
+}
+
+.b_relate_left, .b_relate_right{
+    border: 1px solid black;
+    width: 42%;
+}
+
 @media screen and (max-width: 790px){
     .blog{
         width: 98%;
@@ -134,5 +200,25 @@
         margin-bottom: 20px;
         display: flex;
         align-items: center;
+    }
+    .b_author{
+        padding: 0;
+    }
+    .b_author_left{
+        padding: 0;
+        width: 60%;
+        margin: auto;
+    }
+    .b_author_right{
+        padding: 0;
+        width: 60%;
+        margin: auto;
+    }
+    .b_related{
+        width: 98%;
+    }
+    .b_relate_middle{
+        width: 360px;
+        text-align: center;
     }
 }
