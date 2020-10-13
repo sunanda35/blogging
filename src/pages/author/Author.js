@@ -7,12 +7,14 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import {db} from '../../production/firebase'
 import Story from './story/Story'
+import {useParams, Redirect} from 'react-router-dom'
 
 function Author() {
+    const auth_data = useParams()
     const [profile, setProfile] = useState({})                      //for profile
     const [story, setStory] = useState([])                           //for story of him       
         useEffect(()=>{
-            db.collection("author").where("userName", "==", "@somu").get().then(response=>{
+            db.collection("author").where("userName", "==", auth_data.slug).get().then(response=>{
                 response.docs.map(doc=>{
                     return setProfile({
                         name: doc.data().name,
@@ -25,24 +27,18 @@ function Author() {
                     })
                 })
             }).catch(err=>{
-                alert('some error occured')
+                return <Redirect form='*' to='/404'/>
             })
             
-        },[profile])
+        },[auth_data]);
         useEffect(()=>{
-            db.collection('posts').orderBy("views", "desc").where("userName", "==", "@somu").onSnapshot(snapshot => {
+            db.collection('posts').orderBy("views", "desc").where("userName", "==", auth_data.slug).onSnapshot(snapshot => {
                 setStory(snapshot.docs.map(doc =>({
                     userid: doc.id,
                     ...doc.data()
                 })))
-                // snapshot.forEach(doc =>{
-                //     setStory(
-                //         // doc.data,
-                //         ...doc.data())
-                // }
-                // )
             });
-        },[story])
+        },[auth_data])
 
     return (
         <div>
@@ -55,9 +51,17 @@ function Author() {
                     <div className='auth_prof_n'>
                         <h1>{profile.name}</h1>
                         <h3>{profile.userName}</h3>
-                        <a href={'https://twitter.com/'+profile.tw}><TwitterIcon className='twit s_icon'/></a>
-                        <a href={profile.ln}><LinkedInIcon className='linkdin s_icon'/></a>
-                        <a href={'https://github.com/'+profile.git}><GitHubIcon className='git s_icon'/></a>
+                        {
+                            profile.tw? <a href={'https://twitter.com/'+profile.tw}><TwitterIcon className='twit s_icon'/></a>:null
+                        }
+                        {
+                            profile.ln? <a href={profile.ln}><LinkedInIcon className='linkdin s_icon'/></a> : null
+                        }
+                        {
+                            profile.git? <a href={'https://github.com/'+profile.git}><GitHubIcon className='git s_icon'/></a>: null
+                        }
+                        
+                        
                     </div>
                 </div>
                 <div className='auth_bio'>

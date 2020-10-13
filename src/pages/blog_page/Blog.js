@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import './blog.css'
 import Footer from '../../components/footer/Footer'
 import Header from '../../components/header/Header'
@@ -9,32 +9,53 @@ import BookmarksIcon from '@material-ui/icons/Bookmarks';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import FacebookIcon from '@material-ui/icons/Facebook';
-import MailOutlineIcon from '@material-ui/icons/MailOutline';
+import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import Tags from './body_tag/Tag'
 import { title } from '../../production/Strings'
+import { useParams } from 'react-router-dom'
+import { db } from '../../production/firebase'
+import BProfile from './body_profile/Profile'
+import RelatedPost from './related/RelatedPost'
 
 function Blog() {
+    const blog_data = useParams();
+    const [data, setData] = useState({})
+    
+    useEffect(()=>{
+        db.collection("posts").where("title", "==", blog_data.slug.replace(/-/g, ' ')).get().then(response=>{
+            response.docs.map(doc=>{
+                return setData({
+                    title: doc.data().title,
+                    description: doc.data().description,
+                    imgUrl: doc.data().imgUrl,
+                    blog: doc.data().blog,
+                    userName: doc.data().userName,
+                    tag: doc.data().tags
+                })
+            })
+        }).catch(err =>{
+            alert('some error occured')
+        })
+        document.title=data.title;
+        document.description = data.description;
+    })
+
     return (
         <div>
             <Header/>
             <div className='blog'>
-                <h1 className='b_title'>False positives Are Considered Enemies, But Can They Be Your Friends?</h1>
-                <p className='b_desc'>Who even has time for a hangover?</p>
-                <img className='b_img' src='https://miro.medium.com/max/2363/1*NG5eLKQ0HBJJRTztrxptXw.jpeg' alt='data'/>
+                <h1 className='b_title'>{data.title}</h1>
+    <p className='b_desc'>{data.description}</p>
+                <img className='b_img' src={data.imgUrl} alt={data.title}/>
 
                 <div className='b_body'>
                     <div className='b_body_story'>
-                        <Text/>
+                        <Text blog={data.blog}/>
                     </div>
                     <div className='b_auth_tag'>
                     <div className='tags'>
                         <p>Tags: </p>
-                        <Tags tags='c'/>
-                        <Tags tags='tech'/>
-                        <Tags tags='business'/>
-                        <Tags tags='sex'/>
-                        <Tags tags='body'/>
-                        <Tags tags='anatomy'/>
+                        <Tags tags={data.tag}/>
                     </div>
                     </div>
                     <div className='story_action'>
@@ -54,39 +75,26 @@ function Blog() {
                         <TwitterIcon className='s_ticon' fontSize='large' />
                         <LinkedInIcon className='s_licon' fontSize='large' />
                         <FacebookIcon className='s_ficon' fontSize='large' />
-                        <MailOutlineIcon className='s_micon' fontSize='large' />
+                        <WhatsAppIcon className='s_wicon' fontSize='large' />
                     </div>
                     </div>
                 </div>
-                <div className='b_author'>
-                    <div className='b_author_left'>
-                        <div className='auth_img'>
-                        <img src='https://miro.medium.com/max/2363/1*NG5eLKQ0HBJJRTztrxptXw.jpeg' alt='name'/>
-                        </div>
-                    <div className='b_a_l_r'>
-                        <h6>@sunanda</h6>
-                        <p>Sunanda</p>
-                    </div>
-                    </div>
-                    <div className='b_author_right'>
-                    <div className='b_author_header'>
-                        <p></p>
-                    </div>
-                        <p>syo a si fhdkjfd fd fjdh fkjdh fkjdshfkjdh fjksd fjsdkjf kjd fkjsdfjsdfjdsjf dsfdshf</p>
-                    </div>
-
-                </div>
+                <BProfile user={data.userName}/>
                 <div className='b_related'>
                     <div className='b_relate_left'></div>
                     <div className='b_relate_middle'>
-                        <h2><strong>More from {title}</strong></h2>
+                        <h2 id='more'><strong>More from {title}</strong></h2>
                     </div>
                     <div className='b_relate_right'></div>
+                </div>
+                <div className='b_related'>
+                    <RelatedPost title={data.title} tags={data.tag}/>
                 </div>
             </div>
             <Footer/>
         </div>
     )
 }
+
 
 export default Blog

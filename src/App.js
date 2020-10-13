@@ -10,9 +10,10 @@ function App() {
     <BrowserRouter>
       <Switch>
       <Route component={Home} path='/' exact/>
-      <Route component={Blog} path='/:slug'/>
-      <Route component={Author} path='/me/' />
-      <Route component={Error} exact/>
+      <Route component={Blog} path='/:slug' exact/>
+      <Route component={Author} path='/author/:slug/' exact/>
+
+      <Route  component={Error} path='/404' exact/>
       </Switch>
     </BrowserRouter>
   );

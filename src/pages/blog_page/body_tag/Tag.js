@@ -1,12 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './tag.css'
 
 function Tag({tags}) {
-    return (
-        <div className='tagss'>
-            <p>{'#'+tags}</p>
-        </div>
-    )
+
+    if(tags)return tags.map((element, index) => <li className='tagss' key={index}><Link to={'/tag/'+element}>{'#'+element}</Link></li>);
+    else return <p>loading..</p>
 }
 
 export default Tag

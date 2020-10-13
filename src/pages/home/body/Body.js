@@ -24,10 +24,9 @@ function Body() {
         
         {
             posts.map((post,index) => (
-                <Post className={"index"+index} key={post.userid} userName={post.userName} imgUrl={post.imgUrl} title={post.title} description={post.description}  />
+                <Post className={index} key={post.userid} userName={post.userName} imgUrl={post.imgUrl} title={post.title} description={post.description} />
             ))
         }
-
 
         </div>
     )

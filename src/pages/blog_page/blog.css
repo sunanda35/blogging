@@ -8,6 +8,7 @@
     width: 100%;
     text-align: start;
     text-align: center;
+    text-transform: capitalize;
 }
 .b_desc{
     margin-top: 10px;
@@ -93,8 +94,8 @@
 .s_ficon{
     color: rgb(0,143,247);
 }
-.s_micon{
-    color: rgb(190,58,44);
+.s_wicon{
+    color: rgb(103,230,105);
 }
 
 
@@ -142,6 +143,7 @@
 }
 .b_author_header>p{
     font-size: x-large;
+    font-weight: bold;
     margin-bottom: 5px;
 }
 .b_author_right>p{
@@ -206,13 +208,22 @@
     }
     .b_author_left{
         padding: 0;
-        width: 60%;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        text-align: center;
         margin: auto;
+    }
+    .auth_img{
+        padding: 10px;
     }
     .b_author_right{
         padding: 0;
-        width: 60%;
-        margin: auto;
+        width: 80%;
+        margin-bottom: 10px;
+        margin-left: auto;
+        margin-right: auto;
     }
     .b_related{
         width: 98%;
