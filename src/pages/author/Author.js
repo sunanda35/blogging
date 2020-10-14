@@ -6,8 +6,8 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import {db} from '../../production/firebase'
-import Story from './story/Story'
 import {useParams, Redirect} from 'react-router-dom'
+import Posts from '../../reuseable/posts/Posts'
 
 function Author() {
     const auth_data = useParams()
@@ -78,7 +78,7 @@ function Author() {
             <div className='story'>
             {
                 story.map((data) => (
-                    <Story key={data.userid} userName={data.userName} userAvatar={profile.img} imgUrl={data.imgUrl} title={data.title} description={data.description}  />
+                    <Posts key={data.userid} imgUrl={data.imgUrl} title={data.title} description={data.description}  />
                 ))
             }
             </div>

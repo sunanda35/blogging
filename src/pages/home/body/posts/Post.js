@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './post.css'
-import Profile from './profile/Profile'
+import Profile from '../../../../reuseable/post_author/Profile'
 
 function Post({userName, imgUrl, title, description, className }) {
     return (
         <div className={'post index'+className} >
-            <Link to={'/'+title.toLowerCase().replace(/\s+/g, '-')}>
+            <Link className='li' to={'/'+title.toLowerCase().replace(/\s+/g, '-')}>
                 <div className='img_hover'>
                     <img className='post_img' alt={title} src={imgUrl} ></img>
                 </div>

@@ -1,3 +1,7 @@
+@import '../../../../production/Colors.css';
+.li{
+    text-decoration: none;
+}
 .post{
     box-sizing: inherit;
     border: 1px solid rgb(228, 228, 228);
@@ -17,6 +21,10 @@
 }
 .post_title{
     text-transform: capitalize;
+    color: var(--post-title-color);
+}
+.post_description{
+    color: var(--post-title-color);
 }
 .index2, .index3,.index4,.index5{
     width: 24.5%;

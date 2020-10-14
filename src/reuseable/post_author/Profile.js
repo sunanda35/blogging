@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import './profile.css'
-import {db} from '../../../../../production/firebase'
+import {db} from '../../production/firebase'
 import Avatar from '@material-ui/core/Avatar'
 import { Link } from 'react-router-dom'
 
@@ -10,7 +10,7 @@ function Profile({userName}) {
         db.collection("author").where("userName", "==", userName).get().then(response=>{
             response.docs.map(doc=>{
                 return setProf({
-                    name: doc.data().name,
+                    name: doc.data().name.substr(0,doc.data().name.indexOf(' ')),
                     img: doc.data().img,
                 })
             })

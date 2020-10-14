@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import './relatedpost.css'
 import {db} from '../../../production/firebase'
-import { Link } from 'react-router-dom'
+import Posts from '../../../reuseable/posts/Posts'
 
 
 function RelatedPost({title,tags}) {
@@ -19,17 +19,8 @@ function RelatedPost({title,tags}) {
     return (
         <div className='related'>
             {
-                posts.map((post, index)=>(
-                    <Link key={index} to={'/'+post.title.replace(/\s+/g, '-').toLowerCase()}>
-                        <div className='rp_post'>
-                <div className='img_hover'>
-                    <img className='rp_img' alt={post.title} src={post.imgUrl} ></img>
-                </div>
-                    <h2 className='rp_title'>{post.title}</h2>
-                    <p className='rp_description'>{post.description}</p>
-            
-                </div>
-                    </Link>
+                posts.map((data, index)=>(
+                    <Posts key={index} imgUrl={data.imgUrl} userName={data.userName} title={data.title} description={data.description}  />
                 ))
             }
         </div>
