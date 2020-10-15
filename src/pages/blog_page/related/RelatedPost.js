@@ -7,7 +7,7 @@ import Posts from '../../../reuseable/posts/Posts'
 function RelatedPost({title,tags}) {
     const [posts, setPosts] = useState([])
     useEffect(()=>{
-        if(tags)db.collection("posts").where("tags", "array-contains-any", [tags[0],tags[1],tags[2]]).orderBy("views", "desc").limit(6).onSnapshot(snapshot => {
+        if(tags)db.collection("posts").where("tags", "array-contains-any", tags).orderBy("views", "desc").limit(6).onSnapshot(snapshot => {
             setPosts(snapshot.docs.map(doc => ({
                 userid: doc.id,
                 ...doc.data()

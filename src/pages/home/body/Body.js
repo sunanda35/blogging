@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react'
-import Post from './posts/Post'
+import Post from './tbody/Post'
 import './body.css'
 import { db } from '../../../production/firebase.js'
 import Load from '../../../reuseable/loading/Load'
 import Header from '../../../components/header/Header'
 import Footer from '../../../components/footer/Footer'
+import Bbody from './bbody/Bbody'
 
 
 function Body() {
@@ -38,6 +39,9 @@ function Body() {
             <Load/>
         }
 
+        </div>
+        <div className='body'>
+            <Bbody/>
         </div>
         <Footer/>
         </div>

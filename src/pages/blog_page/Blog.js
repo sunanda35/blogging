@@ -37,8 +37,6 @@ function Blog() {
         }).catch(err =>{
             alert('some error occured')
         })
-        document.title=data.title;
-        document.description = data.description;
     })
 
 
