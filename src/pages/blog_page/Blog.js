@@ -16,6 +16,7 @@ import { useParams } from 'react-router-dom'
 import { db } from '../../production/firebase'
 import BProfile from './body_profile/Profile'
 import RelatedPost from './related/RelatedPost'
+import TextSpeech from './speech/Speech'
 
 function Blog() {
     const blog_data = useParams();
@@ -40,12 +41,17 @@ function Blog() {
         document.description = data.description;
     })
 
+
+
     return (
         <div>
             <Header/>
             <div className='blog'>
                 <h1 className='b_title'>{data.title}</h1>
-    <p className='b_desc'>{data.description}</p>
+                <p className='b_desc'>{data.description}</p>
+                <div>
+                    <TextSpeech text={'Hi, how are you? '+ data.title +', '+ data.description+', '+ data.blog}/>
+                </div>
                 <img className='b_img' src={data.imgUrl} alt={data.title}/>
 
                 <div className='b_body'>
