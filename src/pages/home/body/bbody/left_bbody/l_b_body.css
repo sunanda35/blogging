@@ -1,0 +1,20 @@
+.lpost{
+    width: 70%;
+}
+.lpost > p{
+    width: 60%;
+    margin: auto;
+    padding: 10px;
+    color: rgb(72, 173, 255);
+    border: 1px solid gray;
+    border-radius: 3px;
+    font-size: xx-large;
+    cursor: pointer;
+    text-align: center;
+    text-rendering: optimizeLegibility;
+}
+.lpost > p:hover{
+    background-color: whitesmoke;
+    transition: 0.5s;
+    color: black;
+}

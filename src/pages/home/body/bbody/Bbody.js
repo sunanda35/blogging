@@ -1,7 +1,7 @@
 import React from 'react'
 import './bbody.css'
-import LbBody from './left_bbody/Lpost'
-import RbBody from './right_bbody/Relement'
+import LbBody from './left_bbody/L_b_body'
+import RbBody from './right_bbody/R_b_body'
 
 function Bbody() {
     return (
