@@ -7,18 +7,12 @@ function Lpost({imgUrl, userName, title, description}) {
         <div className='l_post'>
             <div className='l_post_left'>
                 <Author userName={userName}/>
-            <h1>{title}</h1>
-            <p>{description}</p>
+            <h1 className='l_post_l_title'>{title}</h1>
+            <p className='l_post_l_des'>{description}</p>
             </div>
             <div className='l_post_right'>
             <img src={imgUrl} alt='dfd'/>
             </div>
-
-
-
-            
-            
-            
         </div>
     )
 }

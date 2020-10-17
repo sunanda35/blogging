@@ -1,7 +1,7 @@
-.lpost{
-    width: 70%;
+.l_b_body{
+    width: 60%;
 }
-.lpost > p{
+.l_b_body > p{
     width: 60%;
     margin: auto;
     padding: 10px;
@@ -13,8 +13,18 @@
     text-align: center;
     text-rendering: optimizeLegibility;
 }
-.lpost > p:hover{
+.l_b_body > p:hover{
     background-color: whitesmoke;
     transition: 0.5s;
     color: black;
+}
+@media only screen and (max-width: 1000px){
+    .l_b_body{
+        width: 70%;
+    }
+}
+@media only screen and (max-width: 800px){
+    .l_b_body{
+        width: 100%;
+    }
 }

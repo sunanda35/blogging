@@ -19,7 +19,7 @@ function L_b_body() {
     
 
     return (
-        <div className='lpost'>
+        <div className='l_b_body'>
             {
                 posts.map((post,index) => (
                     <Lpost key={index} userName={post.userName} imgUrl={post.imgUrl} title={post.title} description={post.description} />

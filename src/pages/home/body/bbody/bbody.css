@@ -1,6 +1,7 @@
 .b_b_body{
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     margin-top: 35px;
     margin-bottom: 20px;

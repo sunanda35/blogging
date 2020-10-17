@@ -5,7 +5,7 @@ function Bmark() {
     return (
         <div className='b_tags'>
             <div className='twitter'>
-            <a class="twitter-timeline" href="https://twitter.com/sunanda3599?ref_src=twsrc%5Etfw" data-width="300"
+            <a class="twitter-timeline" href="https://twitter.com/sunanda3599?ref_src=twsrc%5Etfw" data-width="100%"
   data-height="500" >Tweets by sunanda3599</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
             

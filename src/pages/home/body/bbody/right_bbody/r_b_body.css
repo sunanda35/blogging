@@ -2,3 +2,14 @@
     width: 29%;
     /* border: 1px solid black; */
 }
+@media only screen and (max-width: 1000px){
+    .r_body{
+        width: 26%;
+        /* border: 1px solid black; */
+    }
+}
+@media only screen and (max-width: 800px){
+    .r_body{
+        display: none
+    }
+}
