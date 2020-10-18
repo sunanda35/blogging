@@ -1,0 +1,11 @@
+.social{
+    width: 100%;
+    margin: auto;
+    position: sticky;
+    top: 100px;
+}
+.ict{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}

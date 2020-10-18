@@ -20,6 +20,7 @@ import TextSpeech from './speech/Speech'
 import Cload from '../../reuseable/loading/Load'
 import Error from '../../reuseable/error/Error'
 import TopStory from '../../pages/top_story/TopStory'
+import Social from './body_social/Social'
 
 function Blog() {
     const blog_data = useParams();
@@ -50,26 +51,31 @@ function Blog() {
     if(loading) return (
         <Cload/>
     )
-    else if(blog_data.slug=='top-story') return (
+    else if(blog_data.slug==='top-story') return (
         <TopStory/>
     )
-    else if (!loading && Object.keys(data).length==0) return (
+    else if (!loading && Object.keys(data).length===0) return (
         <Error/>
     )
     else return (
         <div>
             <Header/>
+
             <div className='blog'>
                 <h1 className='b_title'>{data.title}</h1>
                 <p className='b_desc'>{data.description}</p>
-                <div>
-                    <TextSpeech text={'Hi, how are you? '+ data.title +', '+ data.description+', '+ data.blog}/>
+                <div className='b_speech'>
+                    <TextSpeech text={'Hi, how are you? '+ data.title +', '+ data.description+', '+ data.blog} title={data.title}/>
+                    <img className='b_img' src={data.imgUrl} alt={data.title}/>
                 </div>
-                <img className='b_img' src={data.imgUrl} alt={data.title}/>
-
                 <div className='b_body'>
                     <div className='b_body_story'>
+                        <div className='b_icn' >
+                            <Social/>
+                            </div>
+                        <div className='b_txt' >
                         <Text blog={data.blog}/>
+                        </div>
                     </div>
                     <div className='b_auth_tag'>
                     <div className='tags'>

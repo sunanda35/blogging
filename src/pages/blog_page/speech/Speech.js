@@ -1,36 +1,66 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './speech.css'
+import PlayCircleOutlineTwoToneIcon from '@material-ui/icons/PlayCircleOutlineTwoTone';
+import PauseCircleOutlineIcon from '@material-ui/icons/PauseCircleOutline';
+import VolumeUpTwoToneIcon from '@material-ui/icons/VolumeUpTwoTone';
+import VolumeOffIcon from '@material-ui/icons/VolumeOff';
 
-function Speech({text}) {
+
+function Speech({text, title}) {
+    const [volume, setVolume] = useState(0.5)
+    const [pauseSpeak, setPauseSpeak] = useState(true)
+    const [speak, setSpeak] = useState(false)
+
+    if ('speechSynthesis' in window) {
+      var synthesis = window.speechSynthesis;
+                                               // Get the first `en` language voice in the list
+      var voice = synthesis.getVoices().filter(function(voice) {
+        return voice.lang === 'en';
+      })[0];
+                                                  // Create an utterance object
+      var utterance = new SpeechSynthesisUtterance(text);
+                                                 // Set utterance properties
+      utterance.voice = voice;
+      utterance.pitch = 1;
+      utterance.rate = 1;
+      utterance.volume = volume;
+    }
+
     const speech = ()=>{
-        if ('speechSynthesis' in window) {
+      if(!speak) {
+        synthesis.speak(utterance);
+        setSpeak(true)
+      }
+      else pause()
+      }
+    const pause = () =>{
+      if(pauseSpeak) {
+        synthesis.pause();
+        setPauseSpeak(false)
+      }
+      else {
+        synthesis.resume()
+        setPauseSpeak(true)
+      }
+    }
 
-            var synthesis = window.speechSynthesis;
-          
-            // Get the first `en` language voice in the list
-            var voice = synthesis.getVoices().filter(function(voice) {
-              return voice.lang === 'en';
-            })[0];
-          
-            // Create an utterance object
-            var utterance = new SpeechSynthesisUtterance(text);
-          
-            // Set utterance properties
-            utterance.voice = voice;
-            utterance.pitch = 1;
-            utterance.rate = 1;
-            utterance.volume = 0.8;
-          
-            // Speak the utterance
-            synthesis.speak(utterance);
-          
-          }
-        }
     
     return (
-        <div>
-            <button onClick={()=>speech()}>blodu bol be</button>
-                    <progress value='80' max='100'/>
+        <div className='listin_blog'>
+            <button onClick={()=>{
+              speech();
+            }}>
+              {
+              pauseSpeak?<PlayCircleOutlineTwoToneIcon fontSize='large' />:
+              <PauseCircleOutlineIcon fontSize='large' />
+            }
+            </button>
+            {
+              volume!==0?<VolumeUpTwoToneIcon onClick={()=>setVolume(0)} fontSize='large'/>:<VolumeOffIcon onClick={()=>setVolume(100)} fontSize='large'/>
+            }
+            <div id='progress'>{title}</div>
+            
+            <progress id='volume' value={volume}  max='100'/>
         </div>
     )
 }

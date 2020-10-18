@@ -29,7 +29,7 @@ function Body() {
     if(loading) return (
         <Cload/>
     )
-    else if(!loading && Object.keys(posts).length==0) return (
+    else if(!loading && Object.keys(posts).length===0) return (
         <Error/>
     )
     else return (

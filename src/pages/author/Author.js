@@ -35,7 +35,7 @@ function Author() {
                 alert('some error occured')
             })
             
-        },[profile]);
+        },[auth_data.slugg]);
         // console.log(auth_data)
         useEffect(()=>{
             db.collection('posts').orderBy("views", "desc").where("userName", "==", auth_data.slugg).onSnapshot(snapshot => {
@@ -44,11 +44,11 @@ function Author() {
                     ...doc.data()
                 })))
             });
-        },[story])
+        },[auth_data.slugg])
     if(loading) return (
         <Cload/>
     )
-    else if(!loading && Object.keys(profile).length==0) return (
+    else if(!loading && Object.keys(profile).length===0) return (
         <Error/>
     )
     
