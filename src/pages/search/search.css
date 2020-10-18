@@ -43,6 +43,7 @@
 }
 .search_result{
     width: 70%;
+    min-height: 70vh;
     margin: auto;
     display: flex;
     flex-wrap: wrap;

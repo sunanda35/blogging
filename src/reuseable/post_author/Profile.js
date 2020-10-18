@@ -26,16 +26,21 @@ const useStyles = makeStyles((theme) => ({
 function Profile({userName}) {
     const [prof, setProf] = useState({})
     useEffect(()=>{
-        db.collection("author").where("userName", "==", userName).get().then(response=>{
-            response.docs.map(doc=>{
-                return setProf({
-                    name: doc.data().name.substr(0,doc.data().name.indexOf(' ')),
-                    img: doc.data().img,
-                })
-            })
+        userName?db.collection("author").where("userName", "==", userName).get().then(response=>{
+          response.docs.map(doc=>{
+              return setProf({
+                  name: doc.data().name.substr(0,doc.data().name.indexOf(' ')),
+                  img: doc.data().img,
+              })
+          })
         }).catch(err=>{
             alert('some error occured')
-        })
+        }):
+          setProf({
+            name: "unknown",
+            img: 'https://i.pinimg.com/564x/1f/92/fc/1f92fc8764a9a6d174279543f45a492c.jpg',
+          })
+        
         
     },[userName])
     const classes = useStyles();

@@ -4,7 +4,6 @@ import Post from '../../reuseable/posts/Posts'
 import {db} from '../../production/firebase'
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
-import {title} from '../../production/Strings'
 import {useParams} from 'react-router-dom'
 
 function TopStory() {
@@ -27,7 +26,7 @@ function TopStory() {
         <div>
             <Header/>
             <div className='tag_posts_h'>
-                <p>Top Stories of {title} </p>
+                <p>{'Story of: #'+tag} </p>
             </div>
             <div className='tag_posts'>
             {

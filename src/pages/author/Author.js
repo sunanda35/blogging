@@ -6,15 +6,18 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import {db} from '../../production/firebase'
-import {useParams, Redirect} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 import Posts from '../../reuseable/posts/Posts'
+import Error from '../../reuseable/error/Error'
+import Cload from '../../reuseable/loading/Load';
 
 function Author() {
     const auth_data = useParams()
     const [profile, setProfile] = useState({})                      //for profile
-    const [story, setStory] = useState([])                           //for story of him       
+    const [story, setStory] = useState([])     
+    const [loading, setLoading] = useState(true)                      //for story of him       
         useEffect(()=>{
-            db.collection("author").where("userName", "==", auth_data.slug).get().then(response=>{
+            db.collection("author").where("userName", "==", auth_data.slugg).get().then(response=>{
                 response.docs.map(doc=>{
                     return setProfile({
                         name: doc.data().name,
@@ -26,21 +29,30 @@ function Author() {
                         bio: doc.data().bio
                     })
                 })
+                setLoading(false)
             }).catch(err=>{
-                return <Redirect form='*' to='/404'/>
+                setLoading(false)
+                alert('some error occured')
             })
             
-        },[auth_data]);
+        },[profile]);
+        // console.log(auth_data)
         useEffect(()=>{
-            db.collection('posts').orderBy("views", "desc").where("userName", "==", auth_data.slug).onSnapshot(snapshot => {
+            db.collection('posts').orderBy("views", "desc").where("userName", "==", auth_data.slugg).onSnapshot(snapshot => {
                 setStory(snapshot.docs.map(doc =>({
                     userid: doc.id,
                     ...doc.data()
                 })))
             });
-        },[auth_data])
-
-    return (
+        },[story])
+    if(loading) return (
+        <Cload/>
+    )
+    else if(!loading && Object.keys(profile).length==0) return (
+        <Error/>
+    )
+    
+    else return (
         <div>
             <Header/>
             <div className='author'>
@@ -78,7 +90,7 @@ function Author() {
             <div className='story'>
             {
                 story.map((data) => (
-                    <Posts key={data.userid} imgUrl={data.imgUrl} title={data.title} description={data.description}  />
+                    <Posts key={data.userid} imgUrl={data.imgUrl} userName={data.userName} title={data.title} description={data.description}  />
                 ))
             }
             </div>

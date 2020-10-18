@@ -14,22 +14,21 @@ function Search() {
     const [value, setValue] = useState();
     useEffect(()=>{
 
-        // if(value)db.collection("posts").where("title", ">=", value).orderBy("title", "asc").onSnapshot(snapshot => {
-        //     setPosts(snapshot.docs.map(doc => ({
-        //         userid: doc.id,
-        //         ...doc.data()
-        //         }
-        //     )));
-        // })
-        // else 
-        if(data)db.collection("posts").where("title", ">=", data.fuck).orderBy("title", "asc").onSnapshot(snapshot => {
+        if(value)db.collection("posts").where("title", ">=", value).orderBy("title", "asc").onSnapshot(snapshot => {
             setPosts(snapshot.docs.map(doc => ({
                 userid: doc.id,
                 ...doc.data()
                 }
             )));
         })
-    },[data])
+        else if(data)db.collection("posts").where("title", ">=", data.fuck).orderBy("title", "asc").onSnapshot(snapshot => {
+            setPosts(snapshot.docs.map(doc => ({
+                userid: doc.id,
+                ...doc.data()
+                }
+            )));
+        })
+    },[value])
 
 
     return (

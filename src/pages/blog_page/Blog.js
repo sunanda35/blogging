@@ -17,10 +17,14 @@ import { db } from '../../production/firebase'
 import BProfile from './body_profile/Profile'
 import RelatedPost from './related/RelatedPost'
 import TextSpeech from './speech/Speech'
+import Cload from '../../reuseable/loading/Load'
+import Error from '../../reuseable/error/Error'
+import TopStory from '../../pages/top_story/TopStory'
 
 function Blog() {
     const blog_data = useParams();
     const [data, setData] = useState({})
+    const [loading, setLoading] = useState(true)
     
     useEffect(()=>{
         db.collection("posts").where("title", "==", blog_data.slug.replace(/-/g, ' ')).get().then(response=>{
@@ -34,14 +38,25 @@ function Blog() {
                     tag: doc.data().tags
                 })
             })
+            setLoading(false)
         }).catch(err =>{
+            setLoading(false)
             alert('some error occured')
         })
     })
 
 
 
-    return (
+    if(loading) return (
+        <Cload/>
+    )
+    else if(blog_data.slug=='top-story') return (
+        <TopStory/>
+    )
+    else if (!loading && Object.keys(data).length==0) return (
+        <Error/>
+    )
+    else return (
         <div>
             <Header/>
             <div className='blog'>
