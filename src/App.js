@@ -7,7 +7,6 @@ import Author from './pages/author/Author'
 import TStory from './pages/top_story/TopStory'
 import TagPage from './pages/tag_page/TagPost'
 import Search from './pages/search/Search'
-import Publish from './publisher/Publish'
 
 function App() {
   return (
@@ -19,7 +18,6 @@ function App() {
       <Route component={TStory} path='/top-story/' exact/>
       <Route component={TagPage} path='/tags/:slug/' exact />
       <Route component={Search} path='/search/find=:fuck' exact/>
-      <Route component={Publish} path='/author/u/publish' exact/>
       <Route  component={Error} path='/*/' />
       </Switch>
     </BrowserRouter>
