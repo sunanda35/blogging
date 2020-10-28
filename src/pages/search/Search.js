@@ -28,7 +28,7 @@ function Search() {
                 }
             )));
         })
-    },[value])
+    },[data, value])
 
 
     return (
