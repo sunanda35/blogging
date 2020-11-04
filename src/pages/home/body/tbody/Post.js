@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 import './post.css'
 import Profile from '../../../../reuseable/post_author/Profile'
 
-function Post({userName, imgUrl, title, description, className }) {
+function Post({userName, imgUrl, title, description, slugUrl, className }) {
     return (
         <div className={'post index'+className} >
-            <Link className={'li li'+className} to={'/'+title.toLowerCase().replace(/\s+/g, '-')}>
+            <Link className={'li li'+className} to={'/'+slugUrl}>
                 <div className={'img_hover img_hover'+className}>
                     <img className={'post_img '} alt={title} src={imgUrl} ></img>
                 </div>

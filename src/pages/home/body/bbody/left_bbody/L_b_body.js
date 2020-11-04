@@ -22,7 +22,7 @@ function L_b_body() {
         <div className='l_b_body'>
             {
                 posts.map((post,index) => (
-                    <Lpost key={index} userName={post.userName} imgUrl={post.imgUrl} title={post.title} description={post.description} />
+                    <Lpost key={index} userName={post.userName} imgUrl={post.imgUrl} slugUrl={post.slugUrl} title={post.title} description={post.description} />
                 ))
             }
             <p onClick={()=>setMore(more+2)} >more stories</p>

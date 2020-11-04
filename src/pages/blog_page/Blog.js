@@ -10,6 +10,7 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+import PinterestIcon from '@material-ui/icons/Pinterest';
 import Tags from './body_tag/Tag'
 import { title } from '../../production/Strings'
 import { useParams } from 'react-router-dom'
@@ -28,7 +29,7 @@ function Blog() {
     const [loading, setLoading] = useState(true)
     
     useEffect(()=>{
-        db.collection("posts").where("title", "==", blog_data.slug.replace(/-/g, ' ')).get().then(response=>{
+        db.collection("posts").where("slugUrl", "==", blog_data.slug).get().then(response=>{
             response.docs.map(doc=>{
                 return setData({
                     title: doc.data().title,
@@ -97,10 +98,12 @@ function Blog() {
                     </div>
                     <div className='b_body_share'>
                         <h4>Share this story </h4>
-                        <TwitterIcon className='s_ticon' fontSize='large' />
-                        <LinkedInIcon className='s_licon' fontSize='large' />
-                        <FacebookIcon className='s_ficon' fontSize='large' />
-                        <WhatsAppIcon className='s_wicon' fontSize='large' />
+                        <TwitterIcon onClick={()=>window.open('http://twitter.com/share?text='+data.title+'&url='+window.location.href+'&hashtags='+data.tag[0]+','+data.tag[1]+','+data.tag[2]+','+data.tag[3]+','+data.tag[4]+','+data.tag[5])} className='s_ticon' fontSize='large' />
+                        <LinkedInIcon onClick={()=>window.open('https://www.linkedin.com/sharing/share-offsite/?url='+window.location.href)} className='s_licon' fontSize='large' />
+                        <FacebookIcon onClick={()=>window.open('https://www.facebook.com/sharer/sharer.php?u='+window.location.href)} className='s_ficon' fontSize='large' />
+                        {
+                            window.innerWidth<700?<WhatsAppIcon onClick={()=>window.open('https://wa.me/?text='+data.title+' '+window.location.href)} className='s_wicon' fontSize='large' />:<PinterestIcon onClick={()=>window.open('http://pinterest.com/pin/create/link/?url='+data.title+' '+window.location.href)} className='s_picon' fontSize='large' />
+                        }
                     </div>
                     </div>
                 </div>

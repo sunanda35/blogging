@@ -20,7 +20,7 @@ function RelatedPost({title,tags}) {
         <div className='related'>
             {
                 posts.map((data, index)=>(
-                    <Posts key={index} imgUrl={data.imgUrl} userName={data.userName} title={data.title} description={data.description}  />
+                    <Posts key={index} imgUrl={data.imgUrl} userName={data.userName} title={data.title} slugUrl={data.slugUrl} description={data.description}  />
                 ))
             }
         </div>
