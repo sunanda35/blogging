@@ -5,16 +5,16 @@ import Header from '../../components/header/Header'
 import Text from './body_text/Text'
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
-import BookmarksIcon from '@material-ui/icons/Bookmarks';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import PinterestIcon from '@material-ui/icons/Pinterest';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import Tags from './body_tag/Tag'
 import { title } from '../../production/Strings'
 import { useParams } from 'react-router-dom'
-import { db } from '../../production/firebase'
+import { db, auth } from '../../production/firebase'
 import BProfile from './body_profile/Profile'
 import RelatedPost from './related/RelatedPost'
 import TextSpeech from './speech/Speech'
@@ -27,6 +27,13 @@ function Blog() {
     const blog_data = useParams();
     const [data, setData] = useState({})
     const [loading, setLoading] = useState(true)
+    const [curr, setcurr] = useState(null)
+
+    useEffect(()=>{
+        auth.onAuthStateChanged(user=>{
+            setcurr(user)
+        })
+    })
     
     useEffect(()=>{
         db.collection("posts").where("slugUrl", "==", blog_data.slug).get().then(response=>{
@@ -37,16 +44,18 @@ function Blog() {
                     imgUrl: doc.data().imgUrl,
                     blog: doc.data().blog,
                     userName: doc.data().userName,
-                    tag: doc.data().tags
+                    tag: doc.data().tags,
+                    views: doc.data().views,
+                    love: doc.data().love,
+                    hate: doc.data().hate
                 })
             })
             setLoading(false)
         }).catch(err =>{
             setLoading(false)
-            alert('some error occured')
+            alert(err.message)
         })
-    })
-
+    },[blog_data.slug])
 
 
     if(loading) return (
@@ -66,13 +75,13 @@ function Blog() {
                 <h1 className='b_title'>{data.title}</h1>
                 <p className='b_desc'>{data.description}</p>
                 <div className='b_speech'>
-                    <TextSpeech text={'Hi, how are you? '+ data.title +', '+ data.description+', '+ data.blog} title={data.title}/>
+                    <TextSpeech text={'Hi, how are you? '+ data.title +', '+ data.blog} title={data.title}/>
                     <img className='b_img' src={data.imgUrl} alt={data.title}/>
                 </div>
                 <div className='b_body'>
                     <div className='b_body_story'>
                         <div className='b_icn' >
-                            <Social/>
+                            <Social views={data.views} love={data.love} hate={data.hate} />
                             </div>
                         <div className='b_txt' >
                         <Text blog={data.blog}/>
@@ -87,14 +96,24 @@ function Blog() {
                     <div className='story_action'>
                     <div className='b_body_imp'>
                         <div className='ic'>
-                            <FavoriteIcon className='imp_ficon' fontSize='large' />
-                            <p>011</p>
+                            <FavoriteIcon onClick={()=>{
+                                // if(curr)db.collection("posts").where("slugUrl", "==", "").set
+
+                            }} className='imp_ficon' fontSize='large' />
+                            <p>{data.love?data.love:'0'}</p>
                         </div>
                         <div className='ic'>
-                            <ThumbDownIcon className='imp_ticon' fontSize='large' />
-                            <p>011</p>
+                            <ThumbDownIcon onClick={()=>{
+                                // if(curr)db.collection("posts").where("slugUrl", "==", "").set
+                                
+                            }} className='imp_ticon' fontSize='large' />
+                            <p>{data.hate?data.hate:'0'}</p>
                         </div>
-                            <BookmarksIcon className='imp_bicon' fontSize='large' />
+                        <div className='ic'>
+                            <VisibilityIcon className='imp_bicon' fontSize='large' />           
+                            <p>{data.views?data.views:'0'}</p>
+                        </div>
+                            
                     </div>
                     <div className='b_body_share'>
                         <h4>Share this story </h4>

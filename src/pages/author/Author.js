@@ -15,7 +15,8 @@ function Author() {
     const auth_data = useParams()
     const [profile, setProfile] = useState({})                      //for profile
     const [story, setStory] = useState([])     
-    const [loading, setLoading] = useState(true)                      //for story of him       
+    const [loading, setLoading] = useState(true)                      //for story of him  
+
         useEffect(()=>{
             db.collection("author").where("userName", "==", auth_data.slugg).get().then(response=>{
                 response.docs.map(doc=>{
@@ -36,7 +37,7 @@ function Author() {
             })
             
         },[auth_data.slugg]);
-        // console.log(auth_data)
+        
         useEffect(()=>{
             db.collection('posts').orderBy("views", "desc").where("userName", "==", auth_data.slugg).onSnapshot(snapshot => {
                 setStory(snapshot.docs.map(doc =>({
@@ -45,13 +46,10 @@ function Author() {
                 })))
             });
         },[auth_data.slugg])
-    if(loading) return (
-        <Cload/>
-    )
-    else if(!loading && Object.keys(profile).length===0) return (
-        <Error/>
-    )
-    
+
+
+    if(loading) return <Cload/>
+    else if(!loading && Object.keys(profile).length===0) return <Error/>
     else return (
         <div>
             <Header/>
@@ -64,13 +62,13 @@ function Author() {
                         <h1>{profile.name}</h1>
                         <h3>{profile.userName}</h3>
                         {
-                            profile.tw? <a href={'https://twitter.com/'+profile.tw}><TwitterIcon className='twit s_icon'/></a>:null
+                            profile.tw? <TwitterIcon onClick={()=>window.open('https://twitter.com/'+profile.tw, '_blank')} className='twit s_icon'/>:null
                         }
                         {
-                            profile.ln? <a href={profile.ln}><LinkedInIcon className='linkdin s_icon'/></a> : null
+                            profile.ln? <LinkedInIcon onClick={()=>window.open(profile.ln,'_blank')} className='linkdin s_icon'/>: null
                         }
                         {
-                            profile.git? <a href={'https://github.com/'+profile.git}><GitHubIcon className='git s_icon'/></a>: null
+                            profile.git? <GitHubIcon onClick={()=>window.open('https://github.com/'+profile.git, '_blank')} className='git s_icon'/>: null
                         }
                         
                         
@@ -90,7 +88,7 @@ function Author() {
             <div className='story'>
             {
                 story.map((data) => (
-                    <Posts key={data.userid} imgUrl={data.imgUrl} userName={data.userName} title={data.title} description={data.description}  />
+                    <Posts key={data.userid} imgUrl={data.imgUrl} userName={data.userName} title={data.title} description={data.description} slugUrl={data.slugUrl} />
                 ))
             }
             </div>

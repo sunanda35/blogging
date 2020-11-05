@@ -78,14 +78,17 @@
     color: rgb(51, 50, 50);
 }
 .imp_bicon{
-    color: rgb(77, 129, 228);
-}
-.imp_bicon:hover{
-    color: blue;
+    display: block;
+    color: rgb(64, 129, 250);
 }
 .ic{
     display: flex;
     align-items: center;
+}
+@media screen and (min-width: 1000px){
+    .ic{
+        display: none;
+    }
 }
 .b_body_share{
     display: flex;

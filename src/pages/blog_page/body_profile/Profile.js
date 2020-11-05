@@ -31,7 +31,7 @@ function Profile({user}) {
                         <img src={prof.img} alt='name'/>
                         </div>
                     <div className='b_a_l_r'>
-                        <h6>{prof.userName}</h6>
+                        <h6 onClick={()=>window.open('/author/'+prof.userName)} style={{cursor: 'pointer'}} >{prof.userName}</h6>
                         <p>{prof.name}</p>
                     </div>
                     </div>

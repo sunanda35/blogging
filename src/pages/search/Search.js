@@ -37,7 +37,7 @@ function Search() {
             <div className='search'>
             <div className='search_block'>
             <div className='search_option'>
-                <input type='text' placeholder={
+                <input style={{backgroundColor: 'transparent'}} type='text' placeholder={
                     !value?'Search ' + title:{value}
                 } name='search' onChange={e=>setValue(e.target.value)}/>
                 <SearchIcon className='search_option_btn' fontSize='large'/>
@@ -50,7 +50,7 @@ function Search() {
         <div className='search_result'>
             {
                 posts?posts.map((data, index)=>(
-                    <Posts key={index} imgUrl={data.imgUrl} userName={data.userName} title={data.title} description={data.description}  />
+                    <Posts key={index} imgUrl={data.imgUrl} userName={data.userName} title={data.title} description={data.description} slugUrl={data.slugUrl} />
                 )):{}
             }
         </div>
