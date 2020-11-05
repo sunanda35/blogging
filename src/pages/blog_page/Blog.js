@@ -22,12 +22,14 @@ import Cload from '../../reuseable/loading/Load'
 import Error from '../../reuseable/error/Error'
 import TopStory from '../../pages/top_story/TopStory'
 import Social from './body_social/Social'
+import {Helmet} from "react-helmet";
 
 function Blog() {
     const blog_data = useParams();
     const [data, setData] = useState({})
     const [loading, setLoading] = useState(true)
     const [curr, setcurr] = useState(null)
+    const [view, setView] = useState(true)
 
     useEffect(()=>{
         auth.onAuthStateChanged(user=>{
@@ -39,6 +41,7 @@ function Blog() {
         db.collection("posts").where("slugUrl", "==", blog_data.slug).get().then(response=>{
             response.docs.map(doc=>{
                 return setData({
+                    userID: doc.id,
                     title: doc.data().title,
                     description: doc.data().description,
                     imgUrl: doc.data().imgUrl,
@@ -55,7 +58,30 @@ function Blog() {
             setLoading(false)
             alert(err.message)
         })
-    },[blog_data.slug])
+    },[data,blog_data.slug])
+
+    useEffect(()=>{
+        if(view){
+            if(data.views){
+                db.collection("posts").doc(data.userID).set({
+                    'views': data.views?data.views+1:1,
+                },{merge: true}).then(()=>{
+                    setView(false)
+                }).catch(err=>alert(err.message))
+            }
+        }
+    },[data.userID])
+
+    const datalove=(use)=>{
+        if(curr && data.userID){
+            use==='love' && db.collection("posts").doc(data.userID).set({
+                'love': data.love?data.love+1:1,
+            },{merge: true}).catch(err=>alert(err.message))
+            use==='hate' && db.collection("posts").doc(data.userID).set({
+                'hate': data.hate?data.hate+1:1,
+            },{merge: true}).catch(err=>alert(err.message))
+        }
+    }
 
 
     if(loading) return (
@@ -69,8 +95,32 @@ function Blog() {
     )
     else return (
         <div>
-            <Header/>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>{data.title}</title>
+                <link rel="canonical" href={window.location.href} />
+                <meta name="title" content={data.title}/>
+                <meta name="description" content={data.description}/>
 
+                {/* <!-- Open Graph / Facebook --> */}
+                <meta property="og:type" content="Blogging"/>
+                <meta property="og:url" content={window.location.href}/>
+                <meta property="og:title" content={data.title}/>
+                <meta property="og:description" content={data.description}/>
+                <meta property="og:image" content={data.imgUrl}/>
+
+                {/* <!-- Twitter --> */}
+                <meta property="twitter:card" content="summary_large_image"/>
+                <meta property="twitter:url" content={window.location.href}/>
+                <meta property="twitter:title" content={data.title}/>
+                <meta property="twitter:description" content={data.description}/>
+                <meta property="twitter:image" content={data.imgUrl}/>
+
+
+            </Helmet>
+
+            
+            <Header/>
             <div className='blog'>
                 <h1 className='b_title'>{data.title}</h1>
                 <p className='b_desc'>{data.description}</p>
@@ -96,17 +146,21 @@ function Blog() {
                     <div className='story_action'>
                     <div className='b_body_imp'>
                         <div className='ic'>
-                            <FavoriteIcon onClick={()=>{
-                                // if(curr)db.collection("posts").where("slugUrl", "==", "").set
-
-                            }} className='imp_ficon' fontSize='large' />
+                            <FavoriteIcon onClick={()=>{if(curr){
+                                datalove('love')
+                            }else{
+                                alert('Sorry, You have to login to do this')
+                                window.open('/login')
+                            }}} className='imp_ficon' fontSize='large' />
                             <p>{data.love?data.love:'0'}</p>
                         </div>
                         <div className='ic'>
-                            <ThumbDownIcon onClick={()=>{
-                                // if(curr)db.collection("posts").where("slugUrl", "==", "").set
-                                
-                            }} className='imp_ticon' fontSize='large' />
+                            <ThumbDownIcon onClick={()=>{if(curr){
+                                datalove('hate')
+                            }else{
+                                alert('Sorry, You have to login to do this')
+                                window.open('/login')
+                            }}} className='imp_ticon' fontSize='large' />
                             <p>{data.hate?data.hate:'0'}</p>
                         </div>
                         <div className='ic'>
