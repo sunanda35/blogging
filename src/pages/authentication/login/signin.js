@@ -7,14 +7,18 @@ import Linkdin from '../../../assets/brand/linkedin.svg'
 import Header from '../../../components/header/Header'
 import Footer from '../../../components/footer/Footer'
 import { Link } from 'react-router-dom'
+import {auth} from '../../../production/firebase'
 
 function Signin() {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
-    const alertt = ()=>{
-        alert(email +'and' + password);
+    
+    const signin = ()=>{
+        auth.signInWithEmailAndPassword(email, password).then(()=>{
+            alert('Successfully Loggedin')
+            window.open('/');
+        }).catch(err=>alert(err.message))
     }
-
 
     return (
         <div>
@@ -34,7 +38,7 @@ function Signin() {
                     </div>
                 </div>
                 <div>
-                <p className='btnn' onClick={alertt}>Submit</p>
+                <p className='btnn' onClick={()=>signin()}>Submit</p>
                 </div>
                 <h4>OR</h4>
                 <div className='brand'>
