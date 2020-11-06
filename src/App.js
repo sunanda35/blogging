@@ -7,7 +7,7 @@ import Author from './pages/author/Author'
 import TStory from './pages/top_story/TopStory'
 import TagPage from './pages/tag_page/TagPost'
 import Search from './pages/search/Search'
-import Signup from './pages/authentication/signup/signup'
+import Support from './pages/support/support'
 import Signin from './pages/authentication/login/signin'
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
       <Switch>
       <Route component={Home} path='/' exact/>
       <Route component={Signin} path='/login' exact />
-      <Route component={Signup} path='/signup' exact />
+      <Route component={Support} path='/support' exact />
       <Route component={Blog} path='/:slug/' exact/>
       <Route component={Author} path='/author/:slugg/' exact/>
       <Route component={TStory} path='/top-story' exact/>

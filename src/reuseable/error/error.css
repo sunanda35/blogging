@@ -42,6 +42,7 @@
 .eritems >ul > li{
     font-size: 20px;
     font-weight: bold;
+    color: black;
     margin: 6px;
     cursor: pointer;
 }
@@ -58,6 +59,7 @@
     padding: 3px;
     outline: none;
     border:none;
+    background-color: transparent;
     border-bottom:1px solid black;
     box-sizing: content-box;
     font-size: 40px;

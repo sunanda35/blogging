@@ -6,17 +6,19 @@ import Twitter from '../../../assets/brand/twitter.svg'
 import Linkdin from '../../../assets/brand/linkedin.svg'
 import Header from '../../../components/header/Header'
 import Footer from '../../../components/footer/Footer'
-import { Link } from 'react-router-dom'
 import {auth} from '../../../production/firebase'
+import {appsite} from '../../../production/Strings'
+import { useHistory } from "react-router-dom";
 
 function Signin() {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
+    const history = useHistory()
     
     const signin = ()=>{
         auth.signInWithEmailAndPassword(email, password).then(()=>{
             alert('Successfully Loggedin')
-            window.open('/');
+            history.push('/')
         }).catch(err=>alert(err.message))
     }
 
@@ -33,8 +35,8 @@ function Signin() {
                     <input className='comp' type='password' onChange={e=>setPassword(e.target.value)} placeholder='Password' />
                     </div>
                     <div className='input_f'>
-                    <p>Forget password?</p>
-                    <p><Link className='li' to='/signup'>Sign Up</Link></p>
+                    <p onClick={()=>alert('Sorry, this feature not available right now')} style={{cursor: 'pointer'}} >Forget password?</p>
+                    <p onClick={()=>window.open(appsite+'/signup')} style={{cursor: 'pointer'}} >Sign Up</p>
                     </div>
                 </div>
                 <div>
@@ -42,16 +44,16 @@ function Signin() {
                 </div>
                 <h4>OR</h4>
                 <div className='brand'>
-                    <div className='brandin'>
+                    <div onClick={()=>alert('Sorry, this feature not available right now')} className='brandin'>
                     <img src={Google} alt='google'/>
                     </div>
-                    <div className='brandin'>
+                    <div onClick={()=>alert('Sorry, this feature not available right now')} className='brandin'>
                     <img src={Facebook} alt='facebook'/>
                     </div>
-                    <div className='brandin'>
+                    <div onClick={()=>alert('Sorry, this feature not available right now')} className='brandin'>
                     <img src={Twitter} alt='twitter'/>
                     </div>
-                    <div className='brandin'>
+                    <div onClick={()=>alert('Sorry, this feature not available right now')} className='brandin'>
                     <img src={Linkdin} alt='linkdin'/>
                     </div>
                 </div>
