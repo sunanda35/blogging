@@ -1,6 +1,7 @@
 import firebase from 'firebase'
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// we have to use .env file to made this secure
 const firebaseApp = firebase.initializeApp(
   {
     apiKey: "AIzaSyCyuUFCZI7gR4FsL7B46b1JvQ0ZoxAmTnM",
